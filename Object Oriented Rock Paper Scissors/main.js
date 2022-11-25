@@ -26,13 +26,22 @@ Rule
 - compare
 */
 
-const createPlayer = function() {
+const createPlayer = function(playerType) {
   return {
-    // player name?
-    // player's current move?
+    playerType: playerType,
+
     choose() {
-      // not yet implemented
-    }
+      if (this.isHuman()) {
+        // do this
+      } else {
+        // do that
+      }
+    },
+
+    isHuman() {
+      return this.playerType === 'human';
+    },
+
   };
 }
 
@@ -53,15 +62,24 @@ const compare = function(move1, move2) {
 };
 
 const RPSGame = {
-  human: createPlayer(),
-  computer: createPlayer(),
+  human: createPlayer('human'),
+  computer: createPlayer('computer'),
 
+  displayWelcomeMessage() {
+    console.log('Welcome to Rock, Paper, Scissors!');
+  },
+
+  displayGoodbyeMessage() {
+    console.log('Thanks for playing. Goodbye!');
+  },
 
   play() {
-    displayWelcomeMessage();
+    this.displayWelcomeMessage();
     this.human.choose();
     this.computer.choose();
     displayWinner();
-    displayGoodbyeMessage();
+    this.displayGoodbyeMessage();
   }
 };
+
+RPSGame.play();
