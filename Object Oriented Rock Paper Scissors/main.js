@@ -25,16 +25,26 @@ Rule
 
 - compare
 */
+const readline = required('readline-sync');
 
 const createPlayer = function(playerType) {
   return {
     playerType: playerType,
+    choices: ['rock', 'paper', 'scissors'],
+    move: null,
 
     choose() {
       if (this.isHuman()) {
-        // do this
+        console.log('Please enter a number to choose:\n(1) Rock\n(2) Paper\n(3) Scissors');
+        let playerChoice = Number(readline.question().trim());
+        while (!playerChoice <= 3 || playerChoice >= 1) {
+          console.log('Please enter a valid number:\n(1) Rock\n(2) Paper\n(3) Scissors');
+          playerChoice = Number(readline.question().trim());
+        }
+        this.move = this.choices[playerChoice]
       } else {
-        // do that
+        let randomIdx = Math.floor(Math.random * this.choices.length);
+        this.move = this.choices[randomIdx];
       }
     },
 
