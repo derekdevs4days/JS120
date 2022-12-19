@@ -1,0 +1,13 @@
+What will the following code log to the console? Explain why it logs that value. Try to answer without running the code.
+
+let qux = { foo: 1 };
+let baz = Object.create(qux);
+baz.foo = 2;
+
+console.log(baz.foo + qux.foo)
+
+3.
+
+We assign baz.foo to a value of 2. Property assignment doesn't use the prototype chain; instead, it creates a new property in the baz object named foo.
+
+When we add baz.foo and qux.foo together, baz.foo returns the value of its "own" foo property, while qux.foo returns the value of its "own" foo property. Thus, the result is 3.

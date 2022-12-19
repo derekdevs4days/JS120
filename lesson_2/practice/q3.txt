@@ -1,0 +1,13 @@
+What will the following code log to the console? Explain why it logs that value. Try to answer without running the code.
+
+```
+let qux = { foo: 1 };
+let baz = Object.create(qux);
+qux.foo = 2;
+
+console.log(baz.foo + qux.foo);
+```
+4
+This code is also very similar to problem 1. This time, though, we assign the value 2 to qux.foo. Since baz doesn't have its "own" copy of the foo property, JavaScript uses the prototype chain to look up baz.foo, and it finds the foo property in qux. The result is equivalent to 2 + 2, or 4.
+
+An important consideration when dealing with prototypes is that objects hold a reference to their prototype objects. If the object's prototype changes in some way, the changes are observable in the inheriting object as well.
